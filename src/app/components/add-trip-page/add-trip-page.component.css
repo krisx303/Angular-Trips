@@ -1,0 +1,139 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.labeled-input {
+  height: 60px;
+  position: relative;
+  width: 100%;
+  margin: 10px 0px 35px 0px;
+}
+
+h4 {
+  position: relative;
+  z-index: 10;
+  left: 10px;
+  top: 10px;
+  margin-bottom: 20px;
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+form {
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding: 20px 50px;
+  width: 500px;
+  margin-bottom: 20px;
+}
+
+form h2 {
+  text-align: center;
+  color: rgb(0, 0, 98);
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 30px;
+}
+
+.form-input {
+  border-radius: 12px;
+  border: solid 1px grey;
+  box-sizing: border-box;
+  color: black;
+  font-size: 22px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 15px;
+  width: 100%;
+}
+
+.placeholder {
+  color: #65657b;
+  font-family: sans-serif;
+  left: 15px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 200ms, color 200ms;
+  top: 25px;
+  font-size: 20px;
+}
+
+.form-input:focus ~ .placeholder,
+.form-input:not(:placeholder-shown) ~ .placeholder {
+  transform: translateY(-17px) scale(0.6);
+}
+
+.form-input:focus,
+.form-input:not(:placeholder-shown) {
+  padding-top: 15px;
+}
+
+.address-input {
+  width: 50%;
+}
+
+.postcode-input {
+  width: 50%;
+}
+
+.postcode-input,
+.address-input {
+  margin: 0px;
+}
+
+.post {
+  display: flex;
+  column-gap: 5px;
+  height: 50px;
+  width: 100%;
+}
+
+.submit {
+  align-items: center;
+  appearance: button;
+  background-color: #0276ff;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: "RM Neue", sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  padding: 10px 21px;
+  text-align: center;
+  text-transform: none;
+  transition: color 0.13s ease-in-out, background 0.13s ease-in-out,
+    opacity 0.13s ease-in-out, box-shadow 0.13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-22:active {
+  background-color: #006ae8;
+}
+
+.button-22:hover {
+  background-color: #1c84ff;
+}
+
+.site {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form > * {
+  margin-bottom: 10px;
+}

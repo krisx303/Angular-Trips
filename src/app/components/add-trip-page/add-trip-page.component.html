@@ -1,0 +1,192 @@
+<section class="site">
+  <div class="form">
+    <form [formGroup]="tripForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Nazwa wycieczki</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          placeholder="Podaj nazwę wycieczki"
+          [ngClass]="{
+            'is-invalid': submitted && f['name'].errors,
+            'is-valid': submitted && f['name'].errors == undefined
+          }"
+        />
+        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+          <div *ngIf="f['name'].errors['required']">Nazwa jest wymagana!</div>
+          <div *ngIf="f['name'].errors['minlength']">
+            Wymagane jest minimum 6 znaków
+          </div>
+          <div *ngIf="f['name'].errors['maxlength']">
+            Ogranicz nazwę do 20 znaków
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Kraj docelowy</label>
+        <input
+          type="text"
+          formControlName="country"
+          placeholder="Podaj kraj docelowy"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': submitted && f['country'].errors,
+            'is-valid': submitted && f['country'].errors == undefined
+          }"
+        />
+        <div *ngIf="submitted && f['country'].errors" class="invalid-feedback">
+          <div *ngIf="f['country'].errors['required']">
+            Kraj docelowy jest wymagany!
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Opis wycieczki</label>
+        <textarea
+          type="text"
+          formControlName="description"
+          class="form-control multiline-input"
+          placeholder="Opisz wycieczkę"
+          [ngClass]="{
+            'is-invalid': submitted && f['description'].errors,
+            'is-valid': submitted && f['description'].errors == undefined
+          }"
+        ></textarea>
+        <div
+          *ngIf="submitted && f['description'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['description'].errors['required']">
+            Opis jest wymagany!
+          </div>
+          <div *ngIf="f['description'].errors['minlength']">
+            Opis musi mieć co najmniej 50 znaków
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Cena za osobę</label>
+        <input
+          type="number"
+          formControlName="unitPrice"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': submitted && f['unitPrice'].errors,
+            'is-valid': submitted && f['unitPrice'].errors == undefined
+          }"
+        />
+        <div
+          *ngIf="submitted && f['unitPrice'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['unitPrice'].errors['required']">
+            To pole jest wymagane!
+          </div>
+          <div *ngIf="f['unitPrice'].errors['pattern']">Niepoprawna kwota</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Ilość miejsc</label>
+        <input
+          type="number"
+          formControlName="maxSlots"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': submitted && f['maxSlots'].errors,
+            'is-valid': submitted && f['maxSlots'].errors == undefined
+          }"
+        />
+        <div *ngIf="submitted && f['maxSlots'].errors" class="invalid-feedback">
+          <div *ngIf="f['maxSlots'].errors['required']">
+            To pole jest wymagane!
+          </div>
+          <div *ngIf="f['maxSlots'].errors['pattern']">
+            Niepoprawna ilość miejsc
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Link do zdjęcia podglądowego</label>
+        <input
+          type="url"
+          formControlName="imageLink"
+          placeholder="Wklej link do zdjęcia"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': submitted && f['imageLink'].errors,
+            'is-valid': submitted && f['imageLink'].errors == undefined
+          }"
+        />
+        <div
+          *ngIf="submitted && f['imageLink'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['imageLink'].errors['required']">
+            To pole jest wymagane!
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Data rozpoczęcia</label>
+        <input
+          type="date"
+          formControlName="startDate"
+          placeholder="Wklej link do zdjęcia"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': submitted && f['startDate'].errors,
+            'is-valid': submitted && f['startDate'].errors == undefined
+          }"
+        />
+        <div
+          *ngIf="submitted && f['startDate'].errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['startDate'].errors['required']">
+            To pole jest wymagane!
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Data zakończenia</label>
+        <input
+          type="date"
+          formControlName="endDate"
+          placeholder="Wklej link do zdjęcia"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              submitted && (f['endDate'].errors || tripForm.errors != null),
+            'is-valid':
+              submitted &&
+              f['endDate'].errors == undefined &&
+              tripForm.errors == null
+          }"
+        />
+        <div
+          *ngIf="submitted && (f['endDate'].errors || tripForm.errors != null)"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['endDate'].errors && f['endDate'].errors['required']">
+            To pole jest wymagane!
+          </div>
+          <div *ngIf="tripForm.errors != null">
+            Data zakończenia musi następować po dacie rozpoczęcia
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Dodaj wycieczkę</button>
+      </div>
+    </form>
+  </div>
+</section>

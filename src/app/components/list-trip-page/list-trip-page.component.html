@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="main-grid">
+    <div class="filter-container">
+      <!-- Static width column -->
+      <div class="filter">
+        <app-trip-filter
+          [countries]="getCountries()"
+          [maxGlobalPrice]="getGlobalHighestPrice()"
+          [minGlobalPrice]="getGlobalLowestPrice()"
+          (minPriceEvent)="minPriceEvent($event)"
+          (maxPriceEvent)="maxPriceEvent($event)"
+          (startDateEvent)="startDateEvent($event)"
+          (endDateEvent)="endDateEvent($event)"
+          (countriesEvent)="countriesEvent($event)"
+          class="filter"
+        ></app-trip-filter>
+      </div>
+    </div>
+    <div class="trip-grid">
+      <div class="grid">
+        <ng-container *ngFor="let trip of filteredTrips">
+          <app-trip-card
+            [trip]="trip"
+            [reserved]="getAmountTripWithID(trip.id)"
+            [isCheapest]="isCheapestTrip(trip)"
+            [currency]="getCurrency()"
+            [isMostExpensive]="isMostExpensiveTrip(trip)"
+            (addReservation)="onAddReservationClicked(trip)"
+            (removeReservation)="onRemoveReservationClicked(trip)"
+            [isLogged]="this.authService.isLoggedIn"
+          ></app-trip-card>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

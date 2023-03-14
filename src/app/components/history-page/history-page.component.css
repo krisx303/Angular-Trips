@@ -1,0 +1,60 @@
+.filter {
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 20px;
+  height: 400px;
+}
+
+.row-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.row-center button {
+  border: none;
+  color: blue;
+  background-color: transparent;
+}
+
+.site {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 15px;
+}
+
+.card-img-top {
+  height: 180px;
+}
+
+.status {
+  color: white;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
+  font-size: 16px;
+  padding: 8px 10px;
+  width: fit-content;
+}
+.status-archive {
+  background-image: linear-gradient(to bottom right, #ffb700b8, #ff782fc8);
+}
+.status-in-future {
+  background-image: linear-gradient(to bottom right, #79d478b8, #4ac094c8);
+}
+.status-current {
+  background-image: linear-gradient(to bottom right, #00a2ffb8, #0087d5c8);
+}

@@ -1,0 +1,63 @@
+<div
+  class="trip"
+  [ngClass]="{
+    'most-expensive-trip': isMostExpensive,
+    'cheapest-trip': isCheapest,
+    'sold-out-trip': isSoldOut()
+  }"
+>
+  <img
+    class="trip-image"
+    [src]="trip.imageLink"
+    alt=""
+    routerLink="/trips/{{ trip.id }}"
+  />
+  <header>{{ trip.name | uppercase }}</header>
+  <p>Kraj docelowy: {{ trip.country | uppercase }}</p>
+  <p>Jedynie za {{ trip.unitPrice }} {{ currency }} za osobę</p>
+  <p>
+    Od {{ getStringDate(trip.startDate) }} do {{ getStringDate(trip.endDate) }}
+  </p>
+  <p
+    *ngIf="hasAvaliableReservation()"
+    [ngStyle]="{
+      fontWeight: getLeftSlots() < 4 ? 700 : 500,
+      color: hasAvaliableReservation() && getLeftSlots() < 4 ? 'red' : 'black'
+    }"
+  >
+    Pozostało {{ getLeftSlots() }} miejsc
+  </p>
+  <p *ngIf="isSoldOut()">Brak miejsc</p>
+  <nav>
+    <div>
+      <button class="more-info" routerLink="/trips/{{ trip.id }}">
+        Więcej informacji
+      </button>
+    </div>
+    <div class="counting" *ngIf="isLogged">
+      <button
+        [ngStyle]="{
+          visibility: isSoldOut() ? 'hidden' : 'visible'
+        }"
+        class="trip-button trip-add-button"
+        (click)="addTripToCart()"
+      >
+        <i class="bi bi-plus-lg"></i>
+      </button>
+      <button
+        class="trip-button trip-remove-button"
+        (click)="removeTripFromCart()"
+      >
+        <i class="bi bi-dash-lg"></i>
+      </button>
+    </div>
+  </nav>
+  <div
+    [ngClass]="{
+      reserved: reserved > 0,
+      'reserved-hidden': reserved == 0
+    }"
+  >
+    <div>{{ reserved }} <i class="bi bi-person-fill"></i></div>
+  </div>
+</div>

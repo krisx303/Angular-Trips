@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="countries">
+    <h2>Kraj docelowy:</h2>
+    <div *ngFor="let country of countries; let i = index">
+      <input
+        type="checkbox"
+        name=""
+        id="country-{{ i }}"
+        class="checkbox"
+        (input)="countryChange(country)"
+      />
+      <label for="country-{{ i }}">{{ country }}</label>
+    </div>
+  </div>
+  <div class="dates">
+    <h2>Zakres czasu</h2>
+    Data rozpoczęcia:
+    <input
+      type="date"
+      name=""
+      id=""
+      [ngModel]="startDate"
+      (ngModelChange)="startDateChange($event)"
+    />
+    Data zakończenia:
+    <input
+      type="date"
+      name=""
+      id=""
+      [ngModel]="endDate"
+      (ngModelChange)="endDateChange($event)"
+    />
+  </div>
+  <div class="wrapper">
+    <header>
+      <h2>Zakres cenowy</h2>
+    </header>
+    <div class="price-input">
+      <div class="field">
+        <span>Min</span>
+        <input
+          type="number"
+          class="input-min"
+          [value]="minPrice"
+          [ngModel]="minPrice"
+          (ngModelChange)="minPriceChange($event)"
+        />
+      </div>
+      <div class="separator">-</div>
+      <div class="field">
+        <span>Max</span>
+        <input
+          type="number"
+          class="input-max"
+          [value]="maxPrice"
+          [ngModel]="maxPrice"
+          (ngModelChange)="maxPriceChange($event)"
+        />
+      </div>
+    </div>
+    <div class="slider">
+      <div
+        class="progress"
+        [ngStyle]="{
+          left: rangeLeft,
+          right: rangeRight
+        }"
+      ></div>
+    </div>
+    <div class="range-input">
+      <input
+        type="range"
+        class="range-min"
+        [min]="minGlobalPrice"
+        [max]="maxGlobalPrice"
+        step="10"
+        [ngModel]="minPrice"
+        (ngModelChange)="minPriceChange($event)"
+      />
+      <input
+        type="range"
+        class="range-max"
+        [min]="minGlobalPrice"
+        [max]="maxGlobalPrice"
+        step="10"
+        [ngModel]="maxPrice"
+        (ngModelChange)="maxPriceChange($event)"
+      />
+    </div>
+  </div>
+</div>

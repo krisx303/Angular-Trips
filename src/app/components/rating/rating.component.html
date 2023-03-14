@@ -1,0 +1,15 @@
+<span
+  *ngFor="let i of [1, 2, 3, 4, 5]"
+  #star
+  class="material-icons star"
+  (click)="onStarClick(i)"
+  (mouseenter)="onStartHover(i)"
+  (mouseleave)="onEndHover()"
+>
+  <ng-container *ngIf="i - 1 < actual; else emptyStar">
+    <i class="bi bi-star-fill"></i>
+  </ng-container>
+  <ng-template #emptyStar>
+    <i class="bi bi-star"></i>
+  </ng-template>
+</span>

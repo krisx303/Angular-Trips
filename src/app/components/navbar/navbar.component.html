@@ -1,0 +1,146 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index: 10">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/home">LOGO</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="/home"
+            routerLinkActive="active"
+            data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show"
+            >Strona główna</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show"
+            routerLink="/trips"
+            routerLinkActive="active"
+            >Wycieczki</a
+          >
+        </li>
+        <li
+          class="nav-item"
+          *ngIf="authService.isLoggedIn && authService.isManager"
+        >
+          <a
+            class="nav-link"
+            data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show"
+            routerLink="/add-trip"
+            routerLinkActive="active"
+            >Dodaj wycieczkę</a
+          >
+        </li>
+        <li
+          class="nav-item"
+          *ngIf="authService.isLoggedIn && authService.isAdmin"
+        >
+          <a
+            class="nav-link"
+            data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show"
+            routerLink="/admin-dashboard"
+            routerLinkActive="active"
+            >Administracja</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="authService.isLoggedIn">
+          <a
+            class="nav-link"
+            data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse.show"
+            routerLink="/history"
+            routerLinkActive="active"
+            >Historia</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="d-flex icons" *ngIf="authService.isLoggedIn">
+      <a
+        routerLink="/basket"
+        type="button"
+        class="btn btn-primary position-relative"
+        data-bs-toggle="collapse"
+        data-bs-target=".navbar-collapse.show"
+      >
+        <i class="bi bi-cart2"></i>
+        <span
+          *ngIf="getNumberOfTrips() != 0"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+        >
+          {{ getNumberOfTrips() }}
+        </span>
+      </a>
+      <button class="btn btn-primary position-relative">
+        <i class="bi bi-bell-fill"></i>
+        <span
+          *ngIf="hasTripIncoming()"
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+        >
+          !
+        </span>
+      </button>
+    </div>
+    <div class="user">
+      <div class="user-label">{{ this.authService.userLabel }}</div>
+      <div>
+        <button
+          class="btn btn-outline-primary"
+          routerLink="/sign-in"
+          *ngIf="!authService.isLoggedIn"
+        >
+          Zaloguj się
+        </button>
+        <div class="dropdown" *ngIf="authService.isLoggedIn">
+          <button
+            class="dropdown-toggle user-profile"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+              width="40"
+              height="40"
+              class="rounded-circle"
+            />
+          </button>
+          <ul
+            class="dropdown-menu"
+            aria-labelledby="dropdownMenuButton1"
+            style="left: -100px"
+          >
+            <li>
+              <a class="dropdown-item" routerLink="/user-profile">Profil</a>
+            </li>
+            <li><a class="dropdown-item" routerLink="/home">Coś tam</a></li>
+            <li>
+              <a class="dropdown-item" (click)="this.authService.signOut()"
+                >Wyloguj się</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

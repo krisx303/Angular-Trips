@@ -1,0 +1,71 @@
+<div class="site">
+  <div class="filter">
+    <h4>Filter :</h4>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        [(ngModel)]="archiveFilter"
+        id="archive-checkbox"
+      />
+      <label class="form-check-label" for="archive-checkbox">
+        Archiwalne
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        [(ngModel)]="inFutureFilter"
+        id="in-future-checkbox"
+      />
+      <label class="form-check-label" for="in-future-checkbox">
+        Zaplanowane
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        [(ngModel)]="currentFilter"
+        id="current-checkbox"
+      />
+      <label class="form-check-label" for="current-checkbox"> W trakcie </label>
+    </div>
+  </div>
+  <div class="container">
+    <ng-container *ngFor="let pair of getFilteredPairs()">
+      <div class="card" style="width: 18rem">
+        <div class="img-wrapper">
+          <img
+            class="card-img-top"
+            [src]="pair.trip.imageLink"
+            alt="Card image cap"
+          />
+          <ng-container
+            *ngIf="isInTheFuture(pair.trip); else isCurrentOrArchive"
+          >
+            <div class="status status-in-future">Zaplanowane</div>
+          </ng-container>
+          <ng-template #isCurrentOrArchive>
+            <ng-container *ngIf="isArchive(pair.trip); else current">
+              <div class="status status-archive">Archiwalne</div>
+            </ng-container>
+            <ng-template #current>
+              <div class="status status-current">Obecne</div>
+            </ng-template>
+          </ng-template>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ pair.trip.name }}</h5>
+          <h6>{{ pair.trip.startDate }} - {{ pair.trip.endDate }}</h6>
+          <p class="card-text">Kraj: {{ pair.trip.country }}</p>
+          <p class="card-text">Ilość biletów: {{ pair.historyItem.amount }}</p>
+          <a routerLink="/trips/{{ pair.trip.id }}" class="btn btn-primary"
+            >Zobacz szczegóły</a
+          >
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

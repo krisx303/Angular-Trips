@@ -1,0 +1,36 @@
+<div class="site">
+  <div class="container" *ngIf="getCartItems().length > 0; else emptyStorage">
+    <ng-container *ngFor="let item of getCartItems()">
+      <div class="item">
+        <div class="name">{{ item.name }}</div>
+        <div class="price">{{ item.unitPrice }} zł</div>
+        <div class="amount">
+          <button
+            [ngStyle]="{
+              visibility: hasReservations(item) ? 'visible' : 'hidden'
+            }"
+            (click)="removeReservation(item.tripID)"
+            class="remove-reservation"
+          >
+            -
+          </button>
+          {{ item.amount }}
+          <button
+            [ngStyle]="{
+              visibility: isSoldOut(item) ? 'hidden' : 'visible'
+            }"
+            (click)="addReservation(item.tripID)"
+            class="add-reservation"
+          >
+            +
+          </button>
+        </div>
+        <div class="value">{{ item.amount * item.unitPrice }} zł</div>
+      </div>
+    </ng-container>
+    <div class="payment-wrapper">
+      <button (click)="makePayment()">Zapłać</button>
+    </div>
+  </div>
+  <ng-template #emptyStorage> W koszyku nie ma żadnych pozycji </ng-template>
+</div>

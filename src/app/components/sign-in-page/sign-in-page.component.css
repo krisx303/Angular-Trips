@@ -1,0 +1,20 @@
+.sign-up {
+  display: block;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+
+form:before {
+  content: "";
+  background-color: #0d6efd;
+  height: 15px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+h6 {
+  font-weight: 700;
+}

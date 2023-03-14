@@ -1,0 +1,49 @@
+.max-width-800 {
+  max-width: 800px;
+}
+
+.background {
+  width: 100%;
+  background: url("https://img.freepik.com/free-vector/realistic-travel-background-with-elements_52683-77784.jpg?w=2000");
+  height: 800px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.background h2 {
+  font-size: clamp(1rem, 5vmin, 3rem);
+  font-family: sans-serif;
+  color: black;
+}
+
+.footer-content {
+  padding-top: 15px;
+}
+
+.underlined {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.underline-mask:after {
+  content: "";
+  position: absolute;
+  top: 95%;
+  width: 150%;
+  aspect-ratio: 3 / 1;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 50%;
+  border: 6px solid hsl(280 80% 50%);
+  /* Use a conic gradient mask to hide and show the bits you want */
+  --spread: 140deg;
+  --start: 290deg;
+  mask: conic-gradient(
+    from var(--start),
+    white 0 var(--spread),
+    transparent var(--spread)
+  );
+}
